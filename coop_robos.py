@@ -1,5 +1,5 @@
 # step 1- look for a robo
-# step 2- find empty cells and move forward each direction 
+# step 2- find empty cells and look down and forward for another robo  
 # step 3- in the robo dict, store or increament its degree 
 # step 4- once a connection is complete, store it in the conec dict and then check its degree of coop 
 
@@ -77,6 +77,7 @@ def solver(fpath):
                             break 
                     if add_or_not: 
                         robots.append(current_robo)
+        # update the degrees 
         for robot in robots: 
             d = robot.degree
             for n in robot.neighbours:
@@ -84,6 +85,7 @@ def solver(fpath):
                     if r.robo_no == n: 
                         conec_degree[d + r.degree] += 1
         output_list = []
+        # change the output in the correct format 
         for key, value in conec_degree.items():
             temp = [str(key),str(value)]
             output_list.append(temp)
@@ -91,7 +93,7 @@ def solver(fpath):
         output_list = '\n'.join(output_list)
         return output_list
 
-
+# checking with the data set
 for i in range(1, 10):
     input_file = 'coop data\pub' + \
         '0' + str(i) + '.in'
